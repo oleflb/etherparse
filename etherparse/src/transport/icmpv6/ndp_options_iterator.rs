@@ -1,7 +1,7 @@
 use crate::icmpv6::{
     DnsSearchListOptionSlice, MtuOptionSlice, NdpOptionHeader, NdpOptionReadError, NdpOptionSlice,
     NdpOptionType, PrefixInformationOptionSlice, RecursiveDnsServerOptionSlice,
-    RedirectedHeaderOptionSlice, SourceLinkLayerAddressOptionSlice,
+    RedirectedHeaderOptionSlice, RouteInformationOptionSlice, SourceLinkLayerAddressOptionSlice,
     TargetLinkLayerAddressOptionSlice, UnknownNdpOptionSlice,
 };
 
@@ -61,6 +61,8 @@ impl<'a> NdpOptionsIterator<'a> {
             }
             NdpOptionType::REDIRECTED_HEADER => RedirectedHeaderOptionSlice::from_slice(option)
                 .map(NdpOptionSlice::RedirectedHeader),
+            NdpOptionType::ROUTE_INFORMATION => RouteInformationOptionSlice::from_slice(option)
+                .map(NdpOptionSlice::RouteInformation),
             NdpOptionType::MTU => MtuOptionSlice::from_slice(option).map(NdpOptionSlice::Mtu),
             _ => UnknownNdpOptionSlice::from_slice(option).map(NdpOptionSlice::Unknown),
         }?;

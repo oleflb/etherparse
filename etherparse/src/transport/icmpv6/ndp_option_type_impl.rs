@@ -31,6 +31,8 @@ impl NdpOptionType {
     pub const REDIRECTED_HEADER: Self = Self(4);
     /// Recursive DNS Server option \[[RFC8106](https://datatracker.ietf.org/doc/html/rfc8106#section-5.1)\].
     pub const RDNSS: Self = Self(25);
+    /// Route Information option \[[RFC4191](https://datatracker.ietf.org/doc/html/rfc4191#section-2.3)\].
+    pub const ROUTE_INFORMATION: Self = Self(24);
     /// MTU option \[[RFC4861](https://datatracker.ietf.org/doc/html/rfc4861#section-4.6.4)\].
     pub const MTU: Self = Self(5);
 
@@ -44,6 +46,7 @@ impl NdpOptionType {
             5 => Some("MTU"),
             31 => Some("DNS Search List"),
             25 => Some("Recursive DNS Server"),
+            24 => Some("Route Information"),
             _ => None,
         }
     }
